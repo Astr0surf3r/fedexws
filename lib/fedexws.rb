@@ -1,6 +1,7 @@
-require "fedexws/configuration"
+require 'fedexws/configuration'
+require 'fedexws/rates'
 
-class fedexws
+module Fedexws
   def self.configuration
     @configuration ||= Configuration.new
   end
