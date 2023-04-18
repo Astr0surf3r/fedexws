@@ -11,17 +11,14 @@ module Fedexws
     def get(shipping_params)
       
       @shipping_params = shipping_params
-      puts "#{shipping_params}"
       
       gem_spec = Gem.loaded_specs['fedexws']
       gem_dir = gem_spec.gem_dir
-      puts "TEMPLATE DIRECTORY #{gem_dir}/lib/templates/xml_soap"
+      
       xml_template = File.read(File.join(gem_dir, 'lib/templates/xml_soap'))
       
       xml_template_insert_fedex_params = fedex_params_for_request(xml_template)
-      puts "REPLACE FEDEX CREDENTIALS #{xml_template_insert_fedex_params}"
       xml_template_insert_shipping_params = shipping_params_for_request(xml_template_insert_fedex_params)
-      puts "REPLACE FEDEX PACKAGE INFOSS #{xml_template_insert_shipping_params}"
 
       url = URI("https://wsbeta.fedex.com/xml")
       
@@ -50,19 +47,11 @@ module Fedexws
     end
     
     def shipping_params_for_request(xml_template)
-      puts "ECCOCCI QUI SIAMO DENTRO IL METODO: shipping_params_for_reuqest"
-      puts "abbiamo xml_template da modificare"
-      puts "#{xml_template}"
-      puts "abbiamo xml_template da modificare"
-      puts "#{shipping_params_values}"
       i = 0
       shipping_params_values.each do |key, value|
-        puts "#{i}"
         xml_template.gsub!(key, value)
         i += 1
       end
-      puts "ECCOCCI QUA"
-      puts "#{xml_template}"
       return xml_template
     end
 
@@ -86,9 +75,9 @@ module Fedexws
                             "COUNTRY_TO" => @shipping_params[:address_to][:country],
                             "MASS_UNIT" => @shipping_params[:package][:mass_unit].upcase,
                             "WEIGTH_SIZE" => @shipping_params[:package][:weigth],
-                            "LENGTH_SIZE" => @shipping_params[:package][:length].to_i,
-                            "WIDTH_SIZE" => @shipping_params[:package][:width].to_i,
-                            "HEIGTH_SIZE" => @shipping_params[:package][:heigth].to_i,
+                            "LENGTH_SIZE" => @shipping_params[:package][:length].to_i.to_s,
+                            "WIDTH_SIZE" => @shipping_params[:package][:width].to_i.to_s,
+                            "HEIGTH_SIZE" => @shipping_params[:package][:heigth].to_i.to_s,
                             "DISTANCE_UNIT" => @shipping_params[:package][:distance_unit].upcase
                           }
       else 

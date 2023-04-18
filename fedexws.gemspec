@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "fedexws"
-  s.version     = "0.0.4"
+  s.version     = "0.0.5"
   s.summary     = "FedEx Web Services"
   s.description = "A library to use FedEx Web Services"
   s.authors     = ["Astr0Surf3r"]
