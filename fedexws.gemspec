@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = "fedexws"
-  s.version     = "0.0.3"
+  s.version     = "0.0.4"
   s.summary     = "FedEx Web Services"
   s.description = "A library to use FedEx Web Services"
   s.authors     = ["Astr0Surf3r"]
@@ -12,6 +12,6 @@ Gem::Specification.new do |s|
   
   s.add_development_dependency 'rails', '~> 6.0.0'
   s.add_development_dependency 'thor', '~> 1.0.0'
-  s.add_development_dependency 'net/http'
+  s.add_development_dependency 'net/http', '~> 0.1.0'
   s.add_development_dependency 'rspec', '~> 3.9.0'
 end
